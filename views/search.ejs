@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/feed.css" />
+    <link rel="stylesheet" href="/stylesheets/search.css" />
+    <link rel="stylesheet" href="/stylesheets/responsive/search.css" />
+    <link rel="stylesheet" href="/stylesheets/responsive/feed.css" />
+    <title>Search</title>
+  </head>
+  <body>
+
+    <div class="menu">
+      <a href="/feed"
+        ><img
+          draggable="false"
+          class="logo"
+          src="https://cdn1.iconfinder.com/data/icons/logotypes/32/pinterest-512.png"
+      /></a>
+      <a class="home" href="/feed">Home</a>
+      <a class="home" href="/profile">Profile</a>
+      <input
+        id="one"
+        type="text"
+        class="search-bar"
+        placeholder="Search"
+        autofocus
+        onkeyup="sendData(this)"
+        spellcheck="false"
+      />
+      <button id="two" class="search-bar"></button>
+      <div class="icon-container">
+        <img
+          tabindex="1"
+          draggable="false"
+          class="icon bell"
+          src="https://i.hizliresim.com/rcvolcu.png"
+        />
+        <img
+          tabindex="1"
+          draggable="false"
+          class="icon message"
+          src="https://i.hizliresim.com/newumah.png"
+        />
+        <img
+          tabindex="1"
+          draggable="false"
+          class="icon pp"
+          src="/images/153642328.png"
+        />
+        <img
+          tabindex="1"
+          draggable="false"
+          class="icon btn"
+          src="https://i.hizliresim.com/g15mqud.png"
+        />
+
+        <!----FOCUS----->
+        <div tabindex="1" class="focus-bar bell-bar">0 Notifications</div>
+        <!-------------------->
+        <div tabindex="1" class="focus-bar message-bar">0 Messages</div>
+        <!-------------------->
+        <div tabindex="1" class="focus-bar pp-bar">
+          <img src="/images/153642328.png" /><a
+            href="https://linktr.ee/asad.code"
+            target="_blank"
+            >Contact Creator</a
+          >
+        </div>
+        <!-------------------->
+        <div tabindex="1" class="focus-bar btn-bar">Pinterest Clone</div>
+      </div>
+    </div>
+    <div class="error" id="error">
+     
+    </div>
+    <div class="container" id="box"></div>
+
+    <script>
+      function sendData(e) {
+        const searchResults = document.getElementById("box");
+        const error = document.getElementById("error");
+        let match = e.value.match(/^[a-zA-Z0-9 ]*/);
+        let match2 = e.value.match(/\s*/);
+        if (match2[0] === e.value) {
+          searchResults.innerHTML = "";
+          error.innerHTML = "";
+          return;
+        }
+        if (match[0] === e.value) {
+          fetch("getAllPosts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ payload: e.value }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              let payload = data.payload;
+              searchResults.innerHTML = "";
+              error.innerHTML = "";
+              if (payload.length < 1) {
+                error.innerHTML = " <p>Sorry No Result Found!</p>";
+                return;
+              }
+              payload.forEach((item) => {
+                searchResults.innerHTML += `  <div class="box">
+              <a href="${item.image}">
+              <img src="${item.image}" alt="image" />
+              </a>
+              <span class="span1">${item.imageText}</span>
+            </div>`;
+              });
+            });
+          return;
+        }
+        searchResults.innerHTML = "";
+        error.innerHTML = "";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/responsive/register.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <!--pinterest logo-->
+        <img
+          src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png"
+          alt="pin logo"
+          class="img1"
+        />
+        <p class="header">Register Account</p>
+        <span class="error"><%= error %></span>
+        <form action="/register" method="post">
+          <input
+            type="text"
+            placeholder="Full Name"
+            class="detail"
+            name="fullName"
+            spellcheck="false"
+          /><br />
+          <input
+            type="text"
+            placeholder="Email"
+            class="detail"
+            name="email"
+            required
+          /><br />
+          <input
+            type="text"
+            placeholder="Username"
+            class="detail"
+            name="username"
+            spellcheck="false"
+          /><br />
+          <input
+            type="password"
+            placeholder="Password"
+            class="detail"
+            name="password"
+          />
+
+          <div class="gender">
+            <label for="male">
+              <input
+                type="radio"
+                required
+                name="gender"
+                id="male"
+                value="male"
+              />Male
+            </label>
+
+            <label for="female">
+              <input
+                type="radio"
+                required
+                name="gender"
+                id="female"
+                value="female"
+              />Female
+            </label>
+
+            <label for="other">
+              <input
+                type="radio"
+                required
+                name="gender"
+                id="other"
+                value="other"
+              />Other
+            </label>
+          </div>
+
+          <input class="btn int" value="Register Account" type="submit" />
+        </form>
+        <a class="forgot">Forgot your password?</a>
+
+        <footer>
+          <p>
+            By continuing, you agree to Pinterest's <br />
+            <b>Terms of Service, Privacy policy.</b>
+          </p>
+          <hr />
+          <br />
+          <a href="/login" class="lastBtn"
+            >Already have an account ? <b>Login</b></a
+          >
+        </footer>
+        <br />
+      </div>
+    </div>
+  </body>
+</html>

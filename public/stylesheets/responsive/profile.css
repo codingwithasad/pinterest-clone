@@ -1,0 +1,211 @@
+@media screen and (max-width:1440px) {
+
+    .dltPostBtn,
+    .download {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .deletePost {
+        gap: 35px;
+    }
+
+}
+
+@media screen and (max-width:1078px) {
+
+    .dltPostBtn,
+    .download {
+        padding: 7px;
+        font-size: 10px;
+    }
+
+    .deletePost {
+        gap: 20px;
+    }
+
+    @media screen and (max-width:945px) {
+        .deletePost {
+            top: 29%;
+        }
+    }
+}
+
+@media screen and (max-width:890px) {
+    .container4 {
+        columns: 4;
+        column-gap: 10px;
+    }
+    .deletePost {
+        gap: 40px;
+    }
+}
+
+@media screen and (max-width:757px) {
+    .btnIcon{
+        display: flex;
+    }
+    .deletePost {
+        gap: 20px;
+    }
+}
+@media screen and (max-width:650px) {
+
+    .fileBtn,
+    .button2 {
+        font-size: 12px;
+    }
+    .deletePost {
+        gap: 30px;
+    }
+    .dltPostBtn,
+    .download {
+        padding: 5px;
+        font-size: 8px;
+    }
+    .postSuccessMsg{
+        font-size: 14px;
+        padding: 0 25px;
+    }
+    .btnIcon {
+        width: 20px;
+        height: 20px;
+    }
+    .btnIcon .dots{
+        width: 3px;
+        height: 3px;
+    } 
+}
+
+@media screen and (max-width:617px) {
+
+    .fileBtn {
+        padding: 10px 13px;
+    }
+    .postSuccessMsg{
+        font-size: 13px;
+    }
+    
+}
+
+@media screen and (max-width:600px) {
+    .container4 {
+        columns: 3;
+    }
+    .deletePost {
+        gap: 50px;
+    }
+    .profile-picture {
+        height: 121px;
+        width: 121px;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+
+    .tagline {
+        font-size: 14px;
+    }
+
+    .button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .fileBtn {
+        padding: 10px 10px;
+    }
+
+    .container4 {
+        margin-top: 0;
+    }
+
+    .menu .home:nth-child(2) {
+        display: block;
+    }
+
+    .menu .home:nth-child(3) {
+        display: none;
+    }
+
+    .hr {
+        margin-bottom: 45px;
+    }
+}
+
+@media screen and (max-width:592px) {
+    form {
+        flex-direction: column;
+    }
+
+    .fileBtn {
+        margin-top: 12px;
+    }
+
+    .fileCaption {
+        width: 100%;
+    }
+
+    .container3 {
+        width: 100%;
+    }
+    .postSuccessMsg{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .postSuccessMsg{
+        font-size: 13px;
+    }
+    .container4 {
+        columns: 2;
+    }
+
+    .name {
+        font-size: 15px;
+    }
+
+    .tagline {
+        font-size: 12px;
+    }
+
+    .profile-picture {
+        height: 100px;
+        width: 100px;
+    }
+
+    .button {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+    .deletePost {
+        gap: 50px;
+    }
+    .dltPostBtn,
+    .download {
+        padding: 9px;
+        font-size: 12px;
+    }
+}
+@media screen and (max-width:454px) {
+    .deletePost {
+        gap: 20px;
+    }
+}
+@media screen and (max-width:447px) {
+    .deletePost {
+        gap: 30px;
+    }
+}
+@media screen and (max-width:400px) {
+    .deletePost {
+        gap: 25px;
+    }
+    .dltPostBtn,
+    .download {
+        padding: 7px;
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/stylesheets/feed.css" />
+    <link rel="stylesheet" href="/stylesheets/responsive/feed.css" />
+    <title>Feed</title>
+  </head>
+
+  <body>
+    <% include ./partials/header.ejs %>
+
+    <div class="container">
+      <div class="images">
+        <% allPosts.forEach(function(post){ %>
+        <div class="box">
+          <a href="<%= post.image %>">
+            <img src="<%= post.image %>" alt="image" />
+          </a>
+          <span class="span2">@<%= post.user.username %></span>
+          <span class="span1"><%= post.imageText %></span>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("two").onclick = function () {
+        document.getElementById("two").style.pointerEvents = "none";
+        document.getElementById("two").style.opacity = "0.5";
+        document.querySelector(".responsive-search-bar").style.top = "0px";
+      };
+      document.querySelector(".close").onclick = function () {
+        document.getElementById("two").style.pointerEvents = "auto";
+        document.getElementById("two").style.opacity = "1";
+        document.querySelector(".responsive-search-bar").style.top = "-300px";
+      };
+    </script>
+  </body>
+</html>

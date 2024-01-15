@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/profile.css" />
+    <link rel="stylesheet" href="/stylesheets/feed.css" />
+    <link rel="stylesheet" href="/stylesheets/responsive/feed.css" />
+    <link rel="stylesheet" href="/stylesheets/responsive/profile.css" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <% include ./partials/header.ejs %>
+
+    <div class="postSuccessMsg" id="successMessage">
+      <h4><%= successMessage %></h4>
+    </div>
+
+    <div class="container3">
+      <div class="card3">
+        <div class="profile-picture">
+          <% if(userGender.gender === "male"){ %>
+          <img src="/images/boy.png" alt="Profile Picture" draggable="false" />
+          <% } else { %>
+          <img src="/images/girl.png" alt="Profile Picture" draggable="false" />
+          <% } %>
+        </div>
+        <h2 class="name"><%= user.fullName %></h2>
+        <h3 class="tagline">@<%= user.username %></h3>
+        <a href="/logout" class="button">Logout</a>
+
+        <form
+          action="/upload"
+          method="post"
+          enctype="multipart/form-data"
+          id="uploadForm"
+        >
+          <input
+            type="text"
+            name="fileCaption"
+            spellcheck="false"
+            class="fileCaption"
+            placeholder="Enter caption..."
+            id="fileCaption"
+            required
+          />
+          <div class="formbtn">
+            <label for="file" class="fileBtn">Choose File</label>
+            <input
+              type="file"
+              name="file"
+              id="file"
+              required
+              class="fileBtn"
+              onchange="displayFileName()"
+            />
+            <span id="selectedFileName"></span>
+            <input type="submit" value="Submit" class="button2" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="container4" id="container4">
+      <% user.posts.forEach(function(post){ %>
+      <div class="box4">
+        <div class="image">
+          <a href="<%= post.image %>">
+            <img src="<%= post.image %>" alt="image" />
+          </a>
+          <div class="btnIcon" id="btnIcon">
+            <div class="dots"></div>
+            <div class="dots"></div>
+            <div class="dots"></div>
+          </div>
+          <div class="deletePost" id="deletePost">
+           <a href="/download-post/<%= post._id %>" class="download">View Post</a>
+            <form method="post" action="/delete-post/<%= post._id %>">
+              <button type="submit" class="dltPostBtn">Delete</button>
+            </form>
+          </div>
+        </div>
+        <span class="span2">@<%= user.username %></span>
+        <span class="span1"><%= post.imageText %></span>
+      </div>
+      <% }) %>
+    </div>
+
+    <script>
+      function displayFileName() {
+        var fileInput = document.getElementById("file");
+        var selectedFileName = document.getElementById("selectedFileName");
+
+        if (fileInput.files.length > 0) {
+          selectedFileName.textContent = fileInput.files[0].name;
+        } else {
+          selectedFileName.textContent = "";
+        }
+      }
+
+      // Check if there is a success message
+      const successMessage = "<%= successMessage %>";
+
+      const successContainer = document.getElementById("successMessage");
+      successContainer.style.display = "none";
+      // Display the success message for 2 seconds
+      if (successMessage) {
+        successContainer.style.display = "flex";
+        successContainer.innerText = successMessage;
+
+        setTimeout(() => {
+          successContainer.style.display = "none";
+        }, 3000); // 2 seconds
+      }
+
+      // Selecting elements
+      const btnIcons = document.getElementsByClassName("btnIcon");
+
+      // Variable to keep track of the currently displayed deletePost
+      let currentlyDisplayedDeletePost = null;
+
+      // Adding click event listener to btnIcons
+      for (let i = 0; i < btnIcons.length; i++) {
+        btnIcons[i].addEventListener("click", function (event) {
+          // Stop the click event from propagating to the body
+          event.stopPropagation();
+
+          // Find the corresponding deletePost element
+          const deletePost = this.closest(".box4").querySelector(".deletePost");
+
+          // Check if another deletePost is currently displayed
+          if (
+            currentlyDisplayedDeletePost &&
+            currentlyDisplayedDeletePost !== deletePost
+          ) {
+            currentlyDisplayedDeletePost.style.display = "none";
+          }
+
+          // Toggle the display style of the corresponding deletePost
+          deletePost.style.display =
+            deletePost.style.display === "flex" ? "none" : "flex";
+
+          // Update the currently displayed deletePost
+          currentlyDisplayedDeletePost = deletePost;
+        });
+      }
+
+      // Adding click event listener to the document body
+      document.body.addEventListener("click", function () {
+        // Hide the currently displayed deletePost when clicking anywhere on the body
+        if (currentlyDisplayedDeletePost) {
+          currentlyDisplayedDeletePost.style.display = "none";
+          currentlyDisplayedDeletePost = null;
+        }
+      });
+    </script>
+  </body>
+</html>
