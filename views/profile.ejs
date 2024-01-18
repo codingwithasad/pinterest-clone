@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/profile.css" />
-    <link rel="stylesheet" href="/stylesheets/feed.css" />
-    <link rel="stylesheet" href="/stylesheets/responsive/feed.css" />
-    <link rel="stylesheet" href="/stylesheets/responsive/profile.css" />
+    <link rel="stylesheet" href="/stylesheets/profile.css?v=1.0" />
+    <link rel="stylesheet" href="/stylesheets/responsive/profile.css?v=1.0" />
+    <link rel="stylesheet" href="/stylesheets/feed.css?v=1.0" />
+    <link rel="stylesheet" href="/stylesheets/responsive/feed.css?v=1.0" />
     <title>Profile</title>
   </head>
   <body>
@@ -64,20 +64,19 @@
     <div class="hr"></div>
 
     <div class="container4" id="container4">
-      <% user.posts.forEach(function(post){ %>
+      <% user.posts.reverse().forEach(function(post){ %>
       <div class="box4">
         <div class="image">
-          <a href="<%= post.image %>">
+          
             <img src="<%= post.image %>" alt="image" />
-          </a>
           <div class="btnIcon" id="btnIcon">
             <div class="dots"></div>
             <div class="dots"></div>
             <div class="dots"></div>
           </div>
           <div class="deletePost" id="deletePost">
-           <a href="/download-post/<%= post._id %>" class="download">View Post</a>
-            <form method="post" action="/delete-post/<%= post._id %>">
+           <a href="<%= post.image %>" class="download">View Post</a>
+            <form method="post" action="/deletePost/<%= post._id %>">
               <button type="submit" class="dltPostBtn">Delete</button>
             </form>
           </div>

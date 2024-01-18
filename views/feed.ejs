@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/stylesheets/feed.css" />
-    <link rel="stylesheet" href="/stylesheets/responsive/feed.css" />
+    <link rel="stylesheet" href="/stylesheets/feed.css?v=1.0" />
+    <link rel="stylesheet" href="/stylesheets/responsive/feed.css?v=1.0" />
     <title>Feed</title>
   </head>
 
@@ -13,7 +13,7 @@
 
     <div class="container">
       <div class="images">
-        <% allPosts.forEach(function(post){ %>
+        <% allPosts.reverse().forEach(function(post){ %>
         <div class="box">
           <a href="<%= post.image %>">
             <img src="<%= post.image %>" alt="image" />

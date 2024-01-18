@@ -11,7 +11,7 @@ const userModel = require('./routes/users');
 const postModel = require('./routes/posts');
 const passport = require('passport');
 require('dotenv').config();
-require('./routes/cloudinary')
+require('./routes/cloudinary');
 const cloudinary = require('cloudinary');
 const upload = require('./routes/multer');
 const localStrategy = require("passport-local");
@@ -107,7 +107,7 @@ app.post("/upload", upload.single('file'), async function (req, res) {
   }
 });
 
-app.post('/delete-post/:postId', async (req, res) => {
+app.post('/deletePost/:postId', async (req, res) => {
   const postId = req.params.postId;
 
   try {
@@ -115,7 +115,7 @@ app.post('/delete-post/:postId', async (req, res) => {
     await postModel.findByIdAndDelete(postId);
     
     // Redirect to the profile page with success query parameter
-    res.redirect('/profile/#container4?success=true');
+    res.redirect('/profile/?success=true');
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
